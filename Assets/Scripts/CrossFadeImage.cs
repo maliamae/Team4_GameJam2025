@@ -10,6 +10,7 @@ public class CrossFadeImage : MonoBehaviour
     {
         var tweener = crossFade.DOFade(1f, 1f);
         yield return tweener.WaitForCompletion();
+        yield return new WaitForSeconds(1f);
         StartCoroutine(AnimateOut());
     }
      public IEnumerator AnimateOut()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float upDownRange;
     public Camera mainCam;
     private float mouseYRotation;
-    
+    public float clippingDis;
 
 
     private void Awake()
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mouseYRotation = mainCam.transform.rotation.y;
         Cursor.lockState = CursorLockMode.Locked;
+        mainCam.nearClipPlane = clippingDis;
     }
 
     private void Update()
@@ -84,6 +86,21 @@ public class PlayerController : MonoBehaviour
             
             GetComponentInParent<SwapPlayerSizes>().SwapNextSize(currentPos);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor" && GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
+        {
+            GetComponentInParent<SwapPlayerSizes>().ResetPlayer();
+            StartCoroutine(Respawn());
+        }
+    }
+    
+    public IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1f);
+        transform.position = GetComponentInParent<SwapPlayerSizes>().spawnPoint;
     }
 
 }
