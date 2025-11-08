@@ -2410,7 +2410,11 @@ MonoBehaviour:
   - {fileID: 1110962701}
   - {fileID: 778287030}
   - {fileID: 261771527}
+  sizeIndex: 0
   blackCanvas: {fileID: 1396890517}
+  waterSlider: {fileID: 0}
+  waterLevel: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1481996330
 Transform:
   m_ObjectHideFlags: 0
@@ -3567,7 +3571,7 @@ GameObject:
   - component: {fileID: 2029951364}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
