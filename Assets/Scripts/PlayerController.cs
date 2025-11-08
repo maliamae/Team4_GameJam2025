@@ -1,16 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
     private Rigidbody rb;
     public float jumpPower = 3f;
-    private bool isGrounded;
+    public bool isGrounded;
     public float mouseSensitivity;
     public float upDownRange;
     public Camera mainCam;
     private float mouseYRotation;
-
+    
 
 
     private void Awake()
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
         mouseYRotation = mainCam.transform.rotation.y;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
         Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .25f;
+        float distance = transform.localScale.y;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
@@ -69,4 +71,19 @@ public class PlayerController : MonoBehaviour
         mouseYRotation = Mathf.Clamp(mouseYRotation, -upDownRange, upDownRange);
         mainCam.transform.localRotation = Quaternion.Euler(mouseYRotation, 0, 0);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Water")
+        {
+            //Debug.Log("Collecting water");
+            Destroy(other.gameObject);
+
+            Vector3 currentPos = transform.position;
+
+            
+            GetComponentInParent<SwapPlayerSizes>().SwapNextSize(currentPos);
+        }
+    }
+
 }
