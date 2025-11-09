@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (_playerMovement.jumpPressed == true && isGrounded == true)
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
-            Debug.Log("jumped");
+            //Debug.Log("jumped");
             _playerMovement.jumpPressed = false;
         }
 
