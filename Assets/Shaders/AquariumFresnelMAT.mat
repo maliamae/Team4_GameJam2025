@@ -56,10 +56,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _GlowEdge: 4
-    - _GlowStrength: 10
+    - _GlowStrength: 20
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _AlphaColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0, g: 0.58431375, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
