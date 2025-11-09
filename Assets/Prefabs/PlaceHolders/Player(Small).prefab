@@ -141,9 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7085339e677ce498c9433ae9bc9ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 3
+  jumpPower: 0.05
+  moveSpeed: 0.85
   isGrounded: 0
-  mouseSensitivity: 0.25
+  mouseSensitivity: 0.4
   upDownRange: 45
   mainCam: {fileID: 5492581786161234721}
   clippingDis: 0.01
@@ -185,7 +186,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465876369185340699}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.85
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -320,7 +321,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

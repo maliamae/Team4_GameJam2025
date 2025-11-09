@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
     private Rigidbody rb;
-    public float jumpPower = 3f;
+    public float jumpPower;
+    public float moveSpeed;
     public bool isGrounded;
     public float mouseSensitivity;
     public float upDownRange;
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
         mouseYRotation = mainCam.transform.rotation.y;
         Cursor.lockState = CursorLockMode.Locked;
         mainCam.nearClipPlane = clippingDis;
+
+        
     }
 
     private void Update()
@@ -58,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 positionChange = transform.forward * _playerMovement.MovementInputVector.y + transform.right * _playerMovement.MovementInputVector.x;
-        positionChange = positionChange * Time.deltaTime;
+        positionChange = positionChange * moveSpeed * Time.deltaTime;
 
         transform.position += positionChange;
     }
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Water")
         {
             //Debug.Log("Collecting water");
+            //other.gameObject.GetComponentInParent<MeshRenderer>().material
             Destroy(other.gameObject);
 
             Vector3 currentPos = transform.position;

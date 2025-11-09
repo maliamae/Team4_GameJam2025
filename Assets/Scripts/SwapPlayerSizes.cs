@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SwapPlayerSizes : MonoBehaviour
@@ -12,6 +13,12 @@ public class SwapPlayerSizes : MonoBehaviour
     public Slider waterSlider;
     public float waterLevel;
     public Vector3 spawnPoint;
+    public int sceneIndex;
+
+    public Volume smallVol;
+    public Volume medVol;
+    public Volume largeVol;
+
     //public Volume globalVol;
     //public float focusDis;
     //public float focalLen;
@@ -33,6 +40,10 @@ public class SwapPlayerSizes : MonoBehaviour
         waterSlider.value = waterLevel;
 
         spawnPoint = transform.position;
+
+        smallVol.gameObject.SetActive(true);
+        medVol.gameObject.SetActive(false);
+        largeVol.gameObject.SetActive(false);
         /*
         globalVol.profile.TryGet(out dof);
 
@@ -54,6 +65,9 @@ public class SwapPlayerSizes : MonoBehaviour
             sizeIndex++;
             waterLevel = 1 / 3f;
 
+            smallVol.gameObject.SetActive(false);
+            medVol.gameObject.SetActive(true);
+
             //aperature = 12.5f;
             //dof.aperture.value = 12.5f;
             //Debug.Log("Grow 1");
@@ -65,6 +79,9 @@ public class SwapPlayerSizes : MonoBehaviour
             playerSizes[2].SetActive(true);
             sizeIndex++;
             waterLevel = (1 / 3f)*2;
+
+            medVol.gameObject.SetActive(false);
+            largeVol.gameObject.SetActive(true);
 
             //aperature = 13.5f;
             //dof.aperture.value = 13.5f;
@@ -80,6 +97,7 @@ public class SwapPlayerSizes : MonoBehaviour
             //aperature = 16f;
             //dof.aperture.value = 16f;
             //Debug.Log("Grow 3");
+            SceneManager.LoadScene(sceneIndex);
         }
 
         waterSlider.value = waterLevel;
