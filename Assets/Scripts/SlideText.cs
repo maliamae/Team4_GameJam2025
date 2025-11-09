@@ -8,11 +8,13 @@ public class SlideText : MonoBehaviour
     public Image textBox;
     public float startY;
     public float endY;
+    public float stayDuration;
     public IEnumerator TextAnimateIn()
     {
         textBox.rectTransform.anchoredPosition = new Vector2(0f, startY);
         var tweener = textBox.rectTransform.DOAnchorPosY(endY, 1f);
         yield return tweener.WaitForCompletion();
+        yield return new WaitForSeconds(stayDuration);
         StartCoroutine(TextAnimateOut());
     }
     public IEnumerator TextAnimateOut()

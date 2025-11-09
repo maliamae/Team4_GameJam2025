@@ -7,9 +7,20 @@ public class PlayerMovement : MonoBehaviour
     public bool jumpPressed;
     public Vector2 LookInputVector { get; private set;  }
     
+    
     private void OnMove(InputValue inputValue)
     {
         MovementInputVector = inputValue.Get<Vector2>();
+        Debug.Log(MovementInputVector);
+
+        if (MovementInputVector.x > 0.1f || MovementInputVector.y > 0.1f)
+        {
+            GetComponentInParent<PlayerAudioController>().walkingSource.Play();
+        }
+        else
+        {
+            GetComponentInParent<PlayerAudioController>().walkingSource.Pause();
+        }
     }
 
     private void OnJump(InputValue inputValue)

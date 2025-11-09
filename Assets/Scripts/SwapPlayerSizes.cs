@@ -13,11 +13,14 @@ public class SwapPlayerSizes : MonoBehaviour
     public Slider waterSlider;
     public float waterLevel;
     public Vector3 spawnPoint;
-    public int sceneIndex;
+    //public int sceneIndex;
 
     public Volume smallVol;
     public Volume medVol;
     public Volume largeVol;
+
+    public PlayerAudioController audioControl;
+    public Canvas outroCanvas;
 
     //public Volume globalVol;
     //public float focusDis;
@@ -97,7 +100,9 @@ public class SwapPlayerSizes : MonoBehaviour
             //aperature = 16f;
             //dof.aperture.value = 16f;
             //Debug.Log("Grow 3");
-            SceneManager.LoadScene(sceneIndex);
+            //SceneManager.LoadScene(sceneIndex);
+
+            outroCanvas.gameObject.SetActive(true);
         }
 
         waterSlider.value = waterLevel;

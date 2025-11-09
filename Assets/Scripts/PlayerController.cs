@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         positionChange = positionChange * moveSpeed * Time.deltaTime;
 
         transform.position += positionChange;
+        
     }
 
     private void RotationUpdate()
@@ -87,8 +88,21 @@ public class PlayerController : MonoBehaviour
 
             Vector3 currentPos = transform.position;
 
-            
+            if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
+            {
+                GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().splash01);
+            }
+            else if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 1)
+            {
+                GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().splash02);
+            }
+            else if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 2)
+            {
+                GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().splash03);
+            }
+
             GetComponentInParent<SwapPlayerSizes>().SwapNextSize(currentPos);
+            
         }
     }
 
@@ -97,6 +111,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Floor" && GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
         {
             GetComponentInParent<SwapPlayerSizes>().ResetPlayer();
+
+            if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
+            {
+                GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().fallDmg);
+            }
+
             StartCoroutine(Respawn());
         }
     }
