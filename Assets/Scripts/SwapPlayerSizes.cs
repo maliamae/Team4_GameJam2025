@@ -60,7 +60,7 @@ public class SwapPlayerSizes : MonoBehaviour
 
     public void SwapNextSize(Vector3 pos)
     {
-        StartCoroutine(blackCanvas.AnimateIn());
+        //StartCoroutine(blackCanvas.AnimateIn());
 
         if (sizeIndex == 0)
         {
@@ -96,9 +96,9 @@ public class SwapPlayerSizes : MonoBehaviour
         }
         else if (sizeIndex == 2)
         {
-            playerSizes[2].SetActive(false);
-            this.transform.position = pos;
-            playerSizes[3].SetActive(true);
+            //playerSizes[2].SetActive(false);
+            //this.transform.position = pos;
+            //playerSizes[3].SetActive(true);
             waterLevel = (1 / 3f) * 3;
 
             //aperature = 16f;

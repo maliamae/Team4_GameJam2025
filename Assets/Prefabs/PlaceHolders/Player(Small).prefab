@@ -144,7 +144,7 @@ MonoBehaviour:
   jumpPower: 0.05
   moveSpeed: 0.85
   isGrounded: 0
-  mouseSensitivity: 0.4
+  mouseSensitivity: 0.2
   upDownRange: 45
   mainCam: {fileID: 5492581786161234721}
   clippingDis: 0.01

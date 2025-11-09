@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -84,25 +85,28 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("Collecting water");
             //other.gameObject.GetComponentInParent<MeshRenderer>().material
-            Destroy(other.gameObject);
+            
+            
 
             Vector3 currentPos = transform.position;
 
             if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
             {
                 GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().splash01);
+                Destroy(other.gameObject);
             }
             else if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 1)
             {
                 GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().splash02);
+                Destroy(other.gameObject);
             }
             else if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 2)
             {
                 GetComponentInParent<PlayerAudioController>().fallSource.PlayOneShot(GetComponentInParent<PlayerAudioController>().splash03);
             }
 
-            GetComponentInParent<SwapPlayerSizes>().SwapNextSize(currentPos);
-            
+            StartCoroutine(StopInputs(currentPos));
+
         }
     }
 
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor" && GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
         {
+            this.GetComponent<PlayerInput>().actions.Disable();
             GetComponentInParent<SwapPlayerSizes>().ResetPlayer();
 
             if (GetComponentInParent<SwapPlayerSizes>().sizeIndex == 0)
@@ -124,7 +129,28 @@ public class PlayerController : MonoBehaviour
     public IEnumerator Respawn()
     {
         yield return new WaitForSeconds(1f);
+        this.GetComponent<PlayerInput>().actions.Enable();
         transform.position = GetComponentInParent<SwapPlayerSizes>().spawnPoint;
+    }
+
+    public IEnumerator StopInputs(Vector3 pos)
+    {
+        if (GetComponentInParent<SwapPlayerSizes>().sizeIndex < 2)
+        {
+            this.GetComponent<PlayerInput>().actions.Disable();
+
+            StartCoroutine(GetComponentInParent<SwapPlayerSizes>().blackCanvas.AnimateIn());
+            yield return new WaitForSeconds(2f);
+
+            GetComponentInParent<SwapPlayerSizes>().SwapNextSize(pos);
+            this.GetComponent<PlayerInput>().actions.Enable();
+        }
+        else
+        {
+            GetComponentInParent<SwapPlayerSizes>().SwapNextSize(pos);
+        }
+        
+
     }
 
 }
