@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(InputValue inputValue)
     {
         MovementInputVector = inputValue.Get<Vector2>();
-        Debug.Log(MovementInputVector);
+        //Debug.Log(MovementInputVector);
 
         if (MovementInputVector.x > 0.1f || MovementInputVector.y > 0.1f)
         {

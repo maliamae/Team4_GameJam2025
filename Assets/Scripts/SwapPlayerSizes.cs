@@ -22,6 +22,8 @@ public class SwapPlayerSizes : MonoBehaviour
     public PlayerAudioController audioControl;
     public Canvas outroCanvas;
 
+    public GameObject textWaterCollect;
+
     //public Volume globalVol;
     //public float focusDis;
     //public float focalLen;
@@ -70,6 +72,8 @@ public class SwapPlayerSizes : MonoBehaviour
 
             smallVol.gameObject.SetActive(false);
             medVol.gameObject.SetActive(true);
+
+            textWaterCollect.SetActive(true);
 
             //aperature = 12.5f;
             //dof.aperture.value = 12.5f;

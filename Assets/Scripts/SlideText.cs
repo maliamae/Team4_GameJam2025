@@ -9,8 +9,13 @@ public class SlideText : MonoBehaviour
     public float startY;
     public float endY;
     public float stayDuration;
+    public GameObject nextText;
+    public float playDelay;
+
+
     public IEnumerator TextAnimateIn()
     {
+        yield return new WaitForSeconds(playDelay);
         textBox.rectTransform.anchoredPosition = new Vector2(0f, startY);
         var tweener = textBox.rectTransform.DOAnchorPosY(endY, 1f);
         yield return tweener.WaitForCompletion();
@@ -21,9 +26,18 @@ public class SlideText : MonoBehaviour
     {
         var tweener = textBox.rectTransform.DOAnchorPosY(startY, 1f);
         yield return tweener.WaitForCompletion();
+
+        if (nextText != null)
+        {
+            nextText.SetActive(true);
+        }
+        else
+        {
+            yield return null;
+        }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         StartCoroutine(TextAnimateIn());
     }
