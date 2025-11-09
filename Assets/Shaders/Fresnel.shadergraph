@@ -743,10 +743,10 @@
     "m_Guid": {
         "m_GuidSerialized": "d8a6d4ec-015a-44fb-877a-d2200fbeb766"
     },
-    "m_Name": "NoiseTexture",
+    "m_Name": "DiffuseTexture",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "NoiseTexture",
-    "m_DefaultReferenceName": "_NoiseTexture",
+    "m_RefNameGeneratedByDisplayName": "DiffuseTexture",
+    "m_DefaultReferenceName": "_DiffuseTexture",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2268,7 +2268,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "fde8c6cbafea4afd968e6ff3fec47218",
     "m_Id": 0,
-    "m_DisplayName": "NoiseTexture",
+    "m_DisplayName": "DiffuseTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
